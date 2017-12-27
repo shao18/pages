@@ -9,3 +9,6 @@
 
 - [десктоп](desktop-guide)
 - [мобильные телефоны](touch-guide)
+
+**Создать Новое Событие. Storybook**
+desktop/app/buildedNewConversation/index.html
