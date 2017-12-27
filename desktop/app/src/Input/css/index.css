@@ -1,0 +1,28 @@
+.input{
+   display: inline-block;	
+   width: 420px;
+   height: 38px;
+   box-sizing: border-box;
+   border: none;
+}
+.input__input{
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   border: 2px solid #E9ECEF;
+   border-radius: 4px;
+   letter-spacing: 0.47px;
+   padding-left: 8px;
+}
+
+.input__input:focus{
+  border-color: #007DFF;
+}
+.input__input::-webkit-input-placeholder,
+.input__input::-moz-placeholder, 
+.input__input:-ms-input-placeholder,
+.input__input:-moz-placeholder,
+.input__input::placeholder{
+  color: #858E98 ;
+  opacity: 1;
+}

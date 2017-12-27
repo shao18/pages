@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "HelveticaNeueMedium";
+  src: url("font/HelveticaNeueMedium.ttf") format("truetype"); 
+}
+
+@font-face {
+  font-family: "HelveticaNeueBold";
+  src: url("font/helvetica-neue-bold.ttf") format("truetype"); 
+}
+
+.conversation{
+  font-family: "HelveticaNeueMedium", sans-serif;
+  font-size: 13px;
+  color: white;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+/*  background-image: url("/new-event.png");*/
+  background-position: 185px 0;
+  background-repeat: no-repeat;
+}
+
+.conversation__header{
+  border-bottom: 1px solid #E9ECEF;
+  min-height: 45px;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  display: flex;
+  justify-content: space-between;
+/*  mix-blend-mode: difference;*/
+}
+
+.conversation__content{
+  box-shadow: 1px 0 0 0 #E9ECEF;
+  flex: 1 0 auto;
+  color: black;
+  
+}
+.conversation__wrapper{
+  /*outline: 1px solid red;*/
+  width: 872px;
+  margin: 31px auto 0 auto;
+/*  mix-blend-mode: difference;*/
+  
+}
+.conversation__footer{
+  box-shadow: 1px 0 0 0 #E9ECEF;
+  border-top: 1px solid #E9ECEF;
+  text-align: center;
+  min-height: 76px;
+  line-height: 76px;
+}
+
+.conversation__footer-item{
+ margin: auto 8px;
+ display: inline-block;
+}
+.conversation__title{
+ margin-right: 32px;
+ margin-bottom: 45px; 
+}
+.conversation__date{
+ margin-right: 16px;
+}
+
+.conversation__start{
+ margin-right: 3px;
+}
+
+.conversation__end{
+ margin-left: 3px;
+}
+.conversation__participants{
+ margin-right: 32px;
+}
+
+/* H1 */
+.h1{
+ color: black;
+ font-family: HelveticaNeueBold;
+ font-size: 20px;
+ line-height: 25px;
+ margin: 0 0 20px 0px;
+}
+.label{
+  display: block;	
+  font-family: HelveticaNeueBold;
+  font-size: 13px;
+  color: #000000;
+  letter-spacing: 0;
+  margin-bottom: 3px;  
+}

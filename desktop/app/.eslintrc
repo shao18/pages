@@ -1,0 +1,68 @@
+{
+
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "react-app",
+        "eslint:recommended",
+        "fixable-all",
+        "prettier",
+        ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier",
+        "sort-imports-es6-autofix",
+
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-mixed-spaces-and-tabs": 2,
+        "prettier/prettier": "error",
+        "sort-imports-es6-autofix/sort-imports-es6": [2, {
+          "ignoreCase": false,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+        }],
+        "sort-imports": ["off", {
+          "ignoreCase": false,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+       }],
+       "require-jsdoc": ["error", {
+         "require": {
+           "FunctionDeclaration": true,
+           "MethodDefinition": false,
+           "ClassDeclaration": true,
+           "ArrowFunctionExpression": false,
+           "FunctionExpression": false
+         }
+       }]
+
+    }
+}
