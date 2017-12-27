@@ -10,5 +10,5 @@
 - [десктоп](desktop-guide)
 - [мобильные телефоны](touch-guide)
 
-**Создать Новое Событие. Storybook**
-desktop/app/buildedNewConversation/index.html
+**Создать Новое Событие**
+[storybook](desktop/app/buildedNewConversation/index.html)
