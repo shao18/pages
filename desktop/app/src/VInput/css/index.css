@@ -1,0 +1,6 @@
+.input__input-delete:after{
+  content: "×";
+  margin-left: -25px;
+  width: 16px;
+  margin-right: 17px;
+}

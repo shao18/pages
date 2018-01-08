@@ -1,17 +1,41 @@
-import AbstractInput from "AbstractInput";
 import PropTypes from "prop-types";
-import React from "react";
-import "DateInput/css/index.css";
+import React, { Component } from "react";
+import "AbstractInput/css/index.css";
 /**
- * DateInput
+ * AbstractInput
  */
-class DateInput extends AbstractInput {
+class AbstractInput extends Component {
   get blockName() {
-    return "date";
+    return "input";
   }
 
   get inputType() {
-    return "date";
+    return "text";
+  }
+
+  get _inputClass() {
+    return `${this.blockName}__input`;
+  }
+
+  get id() {
+    return this.props.id;
+  }
+
+  clickWrapper(e) {
+    if (e.target.classList.contains(this.blockName)) {
+      e.target.getElementsByClassName(this._inputClass)[0].focus();
+    }
+  }
+
+  get label() {
+    if (this.props.label !== "") {
+      return (
+        <label htmlFor={this.id} className="label">
+          {this.props.label}
+        </label>
+      );
+    }
+    return null;
   }
 
   /**
@@ -35,29 +59,34 @@ class DateInput extends AbstractInput {
       >
         {this.label}
         <input
+          id={this.id}
           className={this._inputClass}
           type={this.inputType}
           value={this.props.value}
           disabled={this.props.state === "disabled"}
           placeholder={this.props.placeholder}
-          onChange={this.props.onChange}
         />
       </div>
     );
   }
 }
-DateInput.propTypes = {
+AbstractInput.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  onChange: PropTypes.func,
   value: PropTypes.string,
   state: PropTypes.oneOf(["normal", "focus", "error", "disabled"]),
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  label: PropTypes.string,
+  items: PropTypes.array
 };
-DateInput.defaultProps = {
+AbstractInput.defaultProps = {
   value: "",
   state: "normal",
   className: "",
-  placeholder: ""
+  placeholder: "",
+  id: null,
+  label: "",
+  items: []
 };
-export default DateInput;
+export default AbstractInput;

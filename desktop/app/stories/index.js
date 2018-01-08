@@ -6,10 +6,12 @@ import { linkTo } from "@storybook/addon-links";
 import { mount, shallow } from "enzyme";
 import { storiesOf } from "@storybook/react";
 import Adapter from "enzyme-adapter-react-16";
+import ArrInput from "ArrInput";
 import Button from "Button";
 import Conversation from "Conversation";
 import DateInput from "DateInput";
-import Input from "Input";
+import Input from "VInput";
+import ListInput from "ListInput";
 import React from "react";
 import Submit from "Submit";
 import TimeInput from "TimeInput";
@@ -23,6 +25,7 @@ function noMargin(getStory) {
     </div>
   );
 }
+
 configure({ adapter: new Adapter() });
 
 storiesOf("Button", module)
@@ -48,9 +51,89 @@ storiesOf("Submit", module)
   .add("Заблокирована", () => (
     <Submit onClick={action("clicked")} state="disabled" value="Создать" />
   ));
-storiesOf("Input", module)
+storiesOf("VInput", module)
   .add("Value", () => <Input value="Ввод" />)
   .add("Placeholder", () => <Input placeholder="О чем будете говорить?" />);
+storiesOf("ArrInput", module)
+  .add("Placeholder", () => <ArrInput placeholder="О чем будете говорить?" />)
+  .add("Select list opened", () => (
+    <ArrInput
+      className="conversation__participants"
+      label="Участники"
+      items={[
+    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
+    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
+    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
+    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
+    {login: "Хан Соло", avatarUrl: "foto2.png"}
+      ]}
+      showDropDown={true}
+    />
+  ))
+  .add("Select list values", () => (
+    <ArrInput
+      className="conversation__participants"
+      label="Участники"
+      value={[
+    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
+    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
+    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
+    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
+    {login: "Хан Соло", avatarUrl: "foto2.png"}
+      ]}
+    />
+  ))
+  .add("Select list values with opened dropdown", () => (
+    <ArrInput
+      className="conversation__participants"
+      label="Участники"
+      value={[
+    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
+    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
+    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
+    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
+    {login: "Хан Соло", avatarUrl: "foto2.png"}
+  ]}
+  items={[
+    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
+    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
+    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
+    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
+    {login: "Хан Соло", avatarUrl: "foto2.png"}
+  ]}
+      showDropDown={true}
+    />
+  ));
+
+storiesOf("ListInput", module)
+  .add("default", () => (
+    <ListInput
+      items={[
+        {
+          start: "16:00",
+          end: "16:30",
+          text: "Готэм " + String.fromCharCode(183) + " 4 этаж"
+        },
+        {
+          start: "16:00",
+      end: "16:30",
+          text: "Поле непаханное " + String.fromCharCode(183) + " 4 этаж"
+        },
+        {
+          start: "16:00",
+      end: "16:30",
+          text: "Тёмная башня " + String.fromCharCode(183) + " 4 этаж"
+        }
+      ]}
+    />
+  ))
+  .add("value", () => <ListInput value={{
+        start: "16:00",
+    end: "16:30",
+        text: "Готэм " + String.fromCharCode(183) + " 4 этаж"
+      }}
+    />
+  );
 storiesOf("Date", module)
   .add("Deafult", () => <DateInput />)
   .add("Value", () => <DateInput value="2017-12-25" />);

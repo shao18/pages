@@ -1,43 +1,11 @@
+import AbstractInput from "AbstractInput";
 import PropTypes from "prop-types";
-import React, { Component } from "react";
-import "Input/css/index.css";
+import React from "react";
+import "VInput/css/index.css";
 /**
- * Input
+ * VInput
  */
-class Input extends Component {
-  get blockName() {
-    return "input";
-  }
-
-  get inputType() {
-    return "text";
-  }
-
-  get _inputClass() {
-    return `${this.blockName}__input`;
-  }
-
-  get id() {
-    return this.props.id;
-  }
-
-  clickWrapper(e) {
-    if (e.target.classList.contains(this.blockName)) {
-      e.target.getElementsByClassName(this._inputClass)[0].focus();
-    }
-  }
-
-  get label() {
-    if (this.props.label !== "") {
-      return (
-        <label htmlFor={this.id} className="label">
-          {this.props.label}
-        </label>
-      );
-    }
-    return null;
-  }
-
+class VInput extends AbstractInput {
   /**
    * @ignore
    */
@@ -45,6 +13,16 @@ class Input extends Component {
     let classList = "";
     if (this.props.className !== "") {
       classList = ` ${this.props.className}`;
+    }
+
+    let del;
+    if (this.props.value) {
+      del = (
+        <a
+          className={`${this._inputClass}-delete`}
+          onClick={this.props.onDelete}
+        />
+      );
     }
     return (
       <div
@@ -65,26 +43,32 @@ class Input extends Component {
           value={this.props.value}
           disabled={this.props.state === "disabled"}
           placeholder={this.props.placeholder}
+          onChange={this.props.onChange}
         />
+        {del}
       </div>
     );
   }
 }
-Input.propTypes = {
+VInput.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onDelete: PropTypes.func,
+  value: PropTypes.array,
   state: PropTypes.oneOf(["normal", "focus", "error", "disabled"]),
   placeholder: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string
+  label: PropTypes.string,
+  items: PropTypes.array
 };
-Input.defaultProps = {
+VInput.defaultProps = {
   value: "",
   state: "normal",
   className: "",
   placeholder: "",
   id: null,
-  label: ""
+  label: "",
+  items: []
 };
-export default Input;
+export default VInput;

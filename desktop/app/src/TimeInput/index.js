@@ -1,11 +1,11 @@
-import Input from "Input";
+import AbstractInput from "AbstractInput";
 import PropTypes from "prop-types";
 import React from "react";
 import "TimeInput/css/index.css";
 /**
  * TimeInput
  */
-class TimeInput extends Input {
+class TimeInput extends AbstractInput {
   get blockName() {
     return "time";
   }
@@ -39,6 +39,7 @@ class TimeInput extends Input {
           type={this.inputType}
           value={this.props.value}
           disabled={this.props.state === "disabled"}
+          onChange={this.props.onChange}
           placeholder={this.props.placeholder}
           min="00:00"
           max="23:59"
