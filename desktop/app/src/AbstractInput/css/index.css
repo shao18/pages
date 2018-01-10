@@ -55,7 +55,9 @@
   border-radius: 50%;
   vertical-align: middle;
 }
-
+.input__item-floor{
+  color: #37003E;
+}
 .input__item:hover{
   background: #F6F7F9;
   font-family: HelveticaNeueBold, sans-serif;

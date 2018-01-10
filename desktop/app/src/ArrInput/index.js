@@ -53,14 +53,18 @@ class ArrInput extends AbstractInput {
               className={`${this.blockName}__item-img`}
             />
           );
-
+        let floor;
+	if(item.hasOwnProperty("homeFloor")){
+	  floor = <span className={`${this.blockName}__item-floor`}>{ String.fromCharCode(183) } {item.homeFloor} этаж</span> 
+	}      
         return (
           <li
             key={key}
             className={`${this.blockName}__item`}
             onClick={this.props.onSelect.bind(null, item, this)}
           >
-            {img} {item.login}
+            {img} {item.login} {floor} 
+
           </li>
         );
       });
@@ -93,8 +97,7 @@ class ArrInput extends AbstractInput {
 
         return (
           <li key={key} className={`${this.blockName}__item${mod}`}>
-            {img} {item.login}{" "}
-            <a
+            {img} {item.login}             <a
               className={`${this.blockName}__item-remove${mod}`}
               onClick={this.props.onDelete.bind(null, item.id)}
             >
