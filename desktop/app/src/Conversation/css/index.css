@@ -16,8 +16,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-/*  background-image: url("/new-event.png");*/
-  background-position: 185px 0;
+  /*background-image: url("/new-event.png");*/
+  background-position: 179px 0;
   background-repeat: no-repeat;
 }
 
@@ -42,7 +42,7 @@
   /*outline: 1px solid red;*/
   width: 872px;
   margin: 31px auto 0 auto;
-/*  mix-blend-mode: difference;*/
+  /*mix-blend-mode: difference;*/
   
 }
 .conversation__footer{
@@ -59,7 +59,7 @@
 }
 .conversation__title{
  margin-right: 32px;
- margin-bottom: 45px; 
+ margin-bottom: 25px; 
 }
 .conversation__date{
  margin-right: 16px;
@@ -74,6 +74,7 @@
 }
 .conversation__participants{
  margin-right: 32px;
+ /*mix-blend-mode: difference;*/
 }
 
 /* H1 */
