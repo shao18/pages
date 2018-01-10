@@ -1,104 +1,129 @@
 import ArrInput from "ArrInput";
-import "Conversation/css/index.css";
 import Button from "Button";
 import DateInput from "DateInput";
 import ListInput from "ListInput";
 import PropTypes from "prop-types";
+import "Conversation/css/index.css";
 import React, { Component } from "react";
 import Submit from "Submit";
 import TimeInput from "TimeInput";
 import VInput from "VInput";
+import _ from "lodash";
 import logo from "Conversation/img/logo.png";
 /**
  * Conversation
  */
 class Conversation extends Component {
+  	
   constructor(props) {
     super(props);
-    const d = new Date();
-    this.state = {
+    this.state = this.defaultState;	  
+  }
+  get defaultState() {
+    return {
       title: "",
       dateStart: null,
-      timeStart: null,
-      timeEnd: null,
-      users: [],
-      rooms: null
-    };	  
+      timeStart: "",
+      timeEnd: "",
+      users: {},
+      rooms: null,
+      searchUser: ""
+    };
   }
+  reset() {
+    this.setState(this.defaultState);
+  }	
 
   get dateStartValue() {
-    if(this.state.dateStart){
+    if (this.state.dateStart) {
       const year = this.state.dateStart.getFullYear();
-      let month = this.state.dateStart.getMonth() |0;
+      let month = this.state.dateStart.getMonth() | 0;
       month++;
       if (month < 10) month = `0${month}`;
       let day = this.state.dateStart.getDate();
       if (day < 10) day = `0${day}`;
-      return `${year}-${month}-${day}`; 
-    }	     
+      return `${year}-${month}-${day}`;
+    }
   }
 
   get startTimeValue() {
-    return this.state.timeStart;	  
+    return this.state.timeStart;
   }
 
   get endTimeValue() {
     return this.state.timeEnd;
   }
-	
+
   changeTitleHandler(e) {
-    this.setState({title: e.target.value });
+    this.setState({ title: e.target.value });
   }
 
   deleteTitleHandler() {
-    this.setState({ title: "" }, () => {
-      console.log(this.state);
-    });
+    this.setState({ title: "" });
   }
 
   onChangeDate(e) {
     const d = /(\d{4})-(\d{2})-(\d{2})/.exec(e.target.value);
     if (d) {
-      this.setState({ dateStart: new Date(d[1], d[2] - 1, d[3]) }, () => {
-        console.log(this.state);
-      });
+      this.setState({ dateStart: new Date(d[1], d[2] - 1, d[3]) });
     } else {
-      this.setState({ dateStart: null }, () => {
-        console.log(this.state);
-      });
+      this.setState({ dateStart: null });
     }
   }
 
   onChangeStartTime(e) {
     const t = /(^\d\d:\d\d)/.exec(e.target.value);
     if (t) {
-      this.setState({timeStart: t[1]});
+      this.setState({ timeStart: t[1] });
     } else {
-      this.setState({timeStart: null});     
+      this.setState({ timeStart: null });
     }
   }
 
   onChangeEndTime(e) {
     const t = /(^\d\d:\d\d)/.exec(e.target.value);
     if (t) {
-      this.setState({timeEnd: t[1]},()=>console.log(this.state));
+      this.setState({ timeEnd: t[1] });
     } else {
-      this.setState({timeEnd: null});     
+      this.setState({ timeEnd: null });
     }
   }
 
   onSelectParticipant(participant, input) {
-    this.state.users.push(participant);
-    this.setState({ users: this.state.users }, () => {
-      console.log(this.state.users);
-    });
+    const users = _.cloneDeep(this.state.users);
+    users[participant.id] = participant;
+    this.setState({ users, searchUser: "" });
     input.showDropDown(false);
   }
 
-  get participants() {
-    return this.state.users;
+  onDeleteParticipant(id) {
+    delete this.state.users[id];
+    this.setState({ users: this.state.users });
   }
-	
+
+  onChangeParticipant(e) {
+    this.setState({ searchUser: e.target.value });
+  }
+
+  /**
+   * @return Array
+   */
+  get participants() {
+    const res = [];
+    for (const key in this.state.users) {
+      res.push(this.state.users[key]);
+    }
+    return res;
+  }
+
+  hasParticipant(participant) {
+    return this.state.users.hasOwnProperty(participant.id);
+  }
+
+  matchParticipant(participant) {
+    return participant.login.indexOf(this.state.searchUser.trim()) !== -1;
+  }
+
   /**
    * @ignore
    */
@@ -145,29 +170,36 @@ class Conversation extends Component {
             <ArrInput
               className="conversation__participants"
               label="Участники"
-              items={
-              [{
-                "id": "1",
-                "login": "veged",
-                "avatarUrl": "https://avatars3.githubusercontent.com/u/15365?s=460&v=4",
-                "homeFloor": 0
+              items={[
+                {
+                  id: "1",
+                  login: "veged",
+                  avatarUrl:
+                    "https://avatars3.githubusercontent.com/u/15365?s=460&v=4",
+                  homeFloor: 0
                 },
-              {
-                "id": "2",
-                "login": "alt-j",
-                "avatarUrl": "https://avatars1.githubusercontent.com/u/3763844?s=400&v=4",
-                "homeFloor": 3
+                {
+                  id: "2",
+                  login: "alt-j",
+                  avatarUrl:
+                    "https://avatars1.githubusercontent.com/u/3763844?s=400&v=4",
+                  homeFloor: 3
                 },
-              {
-                "id": "3",
-                "login": "yeti-or",
-                "avatarUrl": "https://avatars0.githubusercontent.com/u/1813468?s=460&v=4",
-                "homeFloor": 2
+                {
+                  id: "3",
+                  login: "yeti-or",
+                  avatarUrl:
+                    "https://avatars0.githubusercontent.com/u/1813468?s=460&v=4",
+                  homeFloor: 2
                 }
-              ]
-	    }
+              ].filter(
+                x => !this.hasParticipant(x) && this.matchParticipant(x)
+              )}
               onSelect={this.onSelectParticipant.bind(this)}
+              onDelete={this.onDeleteParticipant.bind(this)}
+              onChange={this.onChangeParticipant.bind(this)}
               value={this.participants}
+              search={this.state.searchUser}
             />
             <ListInput
               className="conversation__room"
@@ -176,23 +208,24 @@ class Conversation extends Component {
                 {
                   start: "16:00",
                   end: "16:30",
-                  text: `Готэм ${  String.fromCharCode(183)  } 4 этаж`,         
+                  text: `Готэм ${String.fromCharCode(183)} 4 этаж`
                 },
                 {
                   start: "16:00",
                   end: "16:30",
-                  text: `Поле непаханное ${  String.fromCharCode(183)  } 4 этаж`,       
+                  text: `Поле непаханное ${String.fromCharCode(183)} 4 этаж`
                 },
                 {
                   start: "16:00",
                   end: "16:30",
-                  text: `Тёмная башня ${  String.fromCharCode(183)  } 4 этаж`,          
-                },
-              ]}/>
+                  text: `Тёмная башня ${String.fromCharCode(183)} 4 этаж`
+                }
+              ]}
+            />
           </div>
         </div>
         <footer className="conversation__footer">
-          <Button className="conversation__footer-item" value="Отмена" />
+          <Button className="conversation__footer-item" value="Отмена" onClick={this.reset.bind(this)}/>
           <Submit
             className="conversation__footer-item"
             value="Создать встречу"

@@ -61,11 +61,11 @@ storiesOf("ArrInput", module)
       className="conversation__participants"
       label="Участники"
       items={[
-    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
-    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
-    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
-    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
-    {login: "Хан Соло", avatarUrl: "foto2.png"}
+        { login: "Лекс Лютер", avatarUrl: "foto1.png" },
+        { login: "Томас Андерсон", avatarUrl: "foto2.png" },
+        { login: "Дарт Вейдер", avatarUrl: "foto2.png" },
+        { login: "Кент Кларк", avatarUrl: "foto1.png" },
+        { login: "Хан Соло", avatarUrl: "foto2.png" }
       ]}
       showDropDown={true}
     />
@@ -75,11 +75,11 @@ storiesOf("ArrInput", module)
       className="conversation__participants"
       label="Участники"
       value={[
-    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
-    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
-    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
-    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
-    {login: "Хан Соло", avatarUrl: "foto2.png"}
+        { login: "Лекс Лютер", avatarUrl: "foto1.png" },
+        { login: "Томас Андерсон", avatarUrl: "foto2.png" },
+        { login: "Дарт Вейдер", avatarUrl: "foto2.png" },
+        { login: "Кент Кларк", avatarUrl: "foto1.png" },
+        { login: "Хан Соло", avatarUrl: "foto2.png" }
       ]}
     />
   ))
@@ -88,19 +88,19 @@ storiesOf("ArrInput", module)
       className="conversation__participants"
       label="Участники"
       value={[
-    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
-    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
-    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
-    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
-    {login: "Хан Соло", avatarUrl: "foto2.png"}
-  ]}
-  items={[
-    {login: "Лекс Лютер", avatarUrl: "foto1.png"}, 
-    {login: "Томас Андерсон",avatarUrl: "foto2.png"}, 
-    {login: "Дарт Вейдер", avatarUrl: "foto2.png"}, 
-    {login: "Кент Кларк", avatarUrl: "foto1.png"}, 
-    {login: "Хан Соло", avatarUrl: "foto2.png"}
-  ]}
+        { login: "Лекс Лютер", avatarUrl: "foto1.png" },
+        { login: "Томас Андерсон", avatarUrl: "foto2.png" },
+        { login: "Дарт Вейдер", avatarUrl: "foto2.png" },
+        { login: "Кент Кларк", avatarUrl: "foto1.png" },
+        { login: "Хан Соло", avatarUrl: "foto2.png" }
+      ]}
+      items={[
+        { login: "Лекс Лютер", avatarUrl: "foto1.png" },
+        { login: "Томас Андерсон", avatarUrl: "foto2.png" },
+        { login: "Дарт Вейдер", avatarUrl: "foto2.png" },
+        { login: "Кент Кларк", avatarUrl: "foto1.png" },
+        { login: "Хан Соло", avatarUrl: "foto2.png" }
+      ]}
       showDropDown={true}
     />
   ));
@@ -112,28 +112,30 @@ storiesOf("ListInput", module)
         {
           start: "16:00",
           end: "16:30",
-          text: "Готэм " + String.fromCharCode(183) + " 4 этаж"
+          text: `Готэм ${String.fromCharCode(183)} 4 этаж`
         },
         {
           start: "16:00",
-      end: "16:30",
-          text: "Поле непаханное " + String.fromCharCode(183) + " 4 этаж"
+          end: "16:30",
+          text: `Поле непаханное ${String.fromCharCode(183)} 4 этаж`
         },
         {
           start: "16:00",
-      end: "16:30",
-          text: "Тёмная башня " + String.fromCharCode(183) + " 4 этаж"
+          end: "16:30",
+          text: `Тёмная башня ${String.fromCharCode(183)} 4 этаж`
         }
       ]}
     />
   ))
-  .add("value", () => <ListInput value={{
+  .add("value", () => (
+    <ListInput
+      value={{
         start: "16:00",
-    end: "16:30",
-        text: "Готэм " + String.fromCharCode(183) + " 4 этаж"
+        end: "16:30",
+        text: `Готэм ${String.fromCharCode(183)} 4 этаж`
       }}
     />
-  );
+  ));
 storiesOf("Date", module)
   .add("Deafult", () => <DateInput />)
   .add("Value", () => <DateInput value="2017-12-25" />);

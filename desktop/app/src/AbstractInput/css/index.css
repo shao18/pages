@@ -30,9 +30,9 @@
 .input__list{
   padding-left:0;
   border-radius: 4px;
-  height: 136px;
+  max-height: 136px;
   width: 420px;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin:0;
   box-shadow: 0 1px 10px 0 rgba(0,44,92,0.28);
   position: absolute;

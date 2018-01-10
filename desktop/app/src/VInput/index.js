@@ -55,7 +55,7 @@ VInput.propTypes = {
   onClick: PropTypes.func,
   onChange: PropTypes.func,
   onDelete: PropTypes.func,
-  value: PropTypes.array,
+  value: PropTypes.string,
   state: PropTypes.oneOf(["normal", "focus", "error", "disabled"]),
   placeholder: PropTypes.string,
   id: PropTypes.string,

@@ -8,29 +8,34 @@ import "ArrInput/css/index.css";
 class ArrInput extends AbstractInput {
   constructor(params) {
     super(params);
-    this.state = { showDropDown: this.props.showDropDown };
+    this.state = { 
+	    showDropDown: this.props.showDropDown,
+    };
   }
 
   /*
    * @param {string} state  True for show, false for hide
    */
-  showDropDown(state) {
-    console.log(["state", state, Boolean(state)]);
-    this.setState({ showDropDown: Boolean(state) });
+  showDropDown(state,callback) {
+    this.setState({ showDropDown: Boolean(state) },callback);
   }
 
   onFocus() {
     this.showDropDown(true);
   }
 
-  onBlur() {}
+  onKeyDown(e, input) {
+    if (this.state.showDropDown && e.keyCode === 27) {
+      this.showDropDown(false);
+    }else{
+      this.showDropDown(true);
+    }
+  }
 
   /**
    * Handle for click  DropDown item
    */
-  onSelect(event, participant) {
-    console.log(["FFF",event,participant]);
-  }
+  onSelect(event, participant) {}
 
   /**
    * Return DropDown part of input
@@ -45,20 +50,22 @@ class ArrInput extends AbstractInput {
             <img
               src={item.avatarUrl}
               alt=""
-              className={this.blockName + "__item-img"}
+              className={`${this.blockName}__item-img`}
             />
           );
 
         return (
           <li
             key={key}
-            className={this.blockName + "__item"}
-          onClick={this.props.onSelect.bind(null,item,this)} >	     
+            className={`${this.blockName}__item`}
+            onClick={this.props.onSelect.bind(null, item, this)}
+          >
             {img} {item.login}
-          </li>);
+          </li>
+        );
       });
-      let cn =  `${this.blockName  }__list`;
-      cn += ` ${  cn  }_show_${  ( this.state.showDropDown )? "true": "false"}`;
+      let cn = `${this.blockName}__list`;
+      cn += ` ${cn}_show_${this.state.showDropDown ? "true" : "false"}`;
 
       return <ul className={cn}>{items}</ul>;
     }
@@ -70,7 +77,7 @@ class ArrInput extends AbstractInput {
    * @param {Array} itemsArray List of array items
    * @param {string} mod Postfix of list class
    */
-  listDeletable(itemsArray, mod){
+  listDeletable(itemsArray, mod) {
     let items;
     if (itemsArray.length > 0) {
       items = itemsArray.map((item, key) => {
@@ -80,17 +87,23 @@ class ArrInput extends AbstractInput {
             <img
               src={item.avatarUrl}
               alt=""
-              className={this.blockName + "__item-img" + mod}
+              className={`${this.blockName}__item-img${mod}`}
             />
           );
 
         return (
-          <li key={key} className={this.blockName + "__item" + mod}>
+          <li key={key} className={`${this.blockName}__item${mod}`}>
             {img} {item.login}{" "}
-            <a className={this.blockName + "__item-remove" + mod}>×</a>
-          </li>);
+            <a
+              className={`${this.blockName}__item-remove${mod}`}
+              onClick={this.props.onDelete.bind(null, item.id)}
+            >
+              ×
+            </a>
+          </li>
+        );
       });
-      return <ul className={`${this.blockName  }__list${  mod}`} >{items}</ul>;
+      return <ul className={`${this.blockName}__list${mod}`}>{items}</ul>;
     }
     return null;
   }
@@ -103,7 +116,6 @@ class ArrInput extends AbstractInput {
     if (this.props.className !== "") {
       classList = ` ${this.props.className}`;
     }
-    console.log(["v", this.props]);
     return (
       <div
         className={
@@ -123,10 +135,12 @@ class ArrInput extends AbstractInput {
           disabled={this.props.state === "disabled"}
           placeholder={this.props.placeholder}
           onFocus={this.onFocus.bind(this)}
+          onKeyDown={this.onKeyDown.bind(this)}
+          onChange={this.props.onChange}
+          value={this.props.search}
         />
         {this.list}
-        {this.listDeletable(this.props.value, "-deletable")}    
-	    
+        {this.listDeletable(this.props.value, "-deletable")}
       </div>
     );
   }
@@ -135,17 +149,21 @@ ArrInput.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   onSelect: PropTypes.func,
+  onDelete: PropTypes.func,
+  onChange: PropTypes.func,
   value: PropTypes.array,
   state: PropTypes.oneOf(["normal", "focus", "error", "disabled"]),
   placeholder: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
   items: PropTypes.array,
-  showDropDown: PropTypes.bool
+  showDropDown: PropTypes.bool,
+  search: PropTypes.string
 };
 ArrInput.defaultProps = {
   valueType: "single",
   value: [],
+  search: "",
   state: "normal",
   className: "",
   placeholder: "",
@@ -153,6 +171,8 @@ ArrInput.defaultProps = {
   label: "",
   items: [],
   showDropDown: false,
-  onSelect: () => {}
+  onSelect: () => {},
+  onDelete: () => {},
+  onChange: () => {},
 };
 export default ArrInput;
