@@ -8,16 +8,16 @@ import "ArrInput/css/index.css";
 class ArrInput extends AbstractInput {
   constructor(params) {
     super(params);
-    this.state = { 
-	    showDropDown: this.props.showDropDown,
+    this.state = {
+      showDropDown: this.props.showDropDown
     };
   }
 
   /*
    * @param {string} state  True for show, false for hide
    */
-  showDropDown(state,callback) {
-    this.setState({ showDropDown: Boolean(state) },callback);
+  showDropDown(state, callback) {
+    this.setState({ showDropDown: Boolean(state) }, callback);
   }
 
   onFocus() {
@@ -27,7 +27,7 @@ class ArrInput extends AbstractInput {
   onKeyDown(e, input) {
     if (this.state.showDropDown && e.keyCode === 27) {
       this.showDropDown(false);
-    }else{
+    } else {
       this.showDropDown(true);
     }
   }
@@ -54,17 +54,20 @@ class ArrInput extends AbstractInput {
             />
           );
         let floor;
-	if(item.hasOwnProperty("homeFloor")){
-	  floor = <span className={`${this.blockName}__item-floor`}>{ String.fromCharCode(183) } {item.homeFloor} этаж</span> 
-	}      
+        if (item.hasOwnProperty("homeFloor")) {
+          floor = (
+            <span className={`${this.blockName}__item-floor`}>
+              {String.fromCharCode(183)} {item.homeFloor} этаж
+            </span>
+          );
+        }
         return (
           <li
             key={key}
             className={`${this.blockName}__item`}
             onClick={this.props.onSelect.bind(null, item, this)}
           >
-            {img} {item.login} {floor} 
-
+            {img} {item.login} {floor}
           </li>
         );
       });
@@ -97,7 +100,8 @@ class ArrInput extends AbstractInput {
 
         return (
           <li key={key} className={`${this.blockName}__item${mod}`}>
-            {img} {item.login}             <a
+            {img} {item.login}{" "}
+            <a
               className={`${this.blockName}__item-remove${mod}`}
               onClick={this.props.onDelete.bind(null, item.id)}
             >
@@ -176,6 +180,6 @@ ArrInput.defaultProps = {
   showDropDown: false,
   onSelect: () => {},
   onDelete: () => {},
-  onChange: () => {},
+  onChange: () => {}
 };
 export default ArrInput;

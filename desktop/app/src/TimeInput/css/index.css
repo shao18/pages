@@ -1,13 +1,12 @@
 .time{
    display: inline-block;	
    width: 72px;
-   height: 38px;
    box-sizing: border-box;
    border: none;
 }
 .time__input{
    width: 100%;
-   height: 100%;
+   height: 38px;
    box-sizing: border-box;
    border: 2px solid #E9ECEF;
    border-radius: 4px;

@@ -3,7 +3,6 @@
    box-sizing: border-box;
    border: none;
    vertical-align: top;
-   position:relative;
 }
 .input__input{
    width: 420px;
@@ -13,6 +12,11 @@
    border-radius: 4px;
    letter-spacing: 0.47px;
    padding-left: 8px;
+   padding-right: 27px;
+   text-overflow: ellipsis;
+   font-family: HelveticaNeue, sans-serif;
+   font-size: 13px;
+   letter-spacing: 0.47px;
 }
 
 .input__input:focus{
@@ -37,6 +41,7 @@
   box-shadow: 0 1px 10px 0 rgba(0,44,92,0.28);
   position: absolute;
   background: white;
+  z-index: 10;
 
 }
 

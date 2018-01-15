@@ -1,3 +1,4 @@
+import { ContainerQuery } from "react-container-query";
 import { action } from "@storybook/addon-actions";
 import { before, describe, it, specs } from "storybook-addon-specifications";
 import { configure } from "enzyme";
@@ -145,6 +146,7 @@ storiesOf("Time", module)
 storiesOf("Conversation", module)
   .addDecorator(noMargin)
   .add("Новая встреча", () => <Conversation />);
+
 /*
  *StoriesOf("City", module).add("weather", () => {
  * const city = (

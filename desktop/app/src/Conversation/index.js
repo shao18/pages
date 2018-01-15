@@ -14,11 +14,11 @@ import logo from "Conversation/img/logo.png";
  * Conversation
  */
 class Conversation extends Component {
-  	
   constructor(props) {
     super(props);
-    this.state = this.defaultState;	  
+    this.state = this.defaultState;
   }
+
   get defaultState() {
     return {
       title: "",
@@ -27,12 +27,14 @@ class Conversation extends Component {
       timeEnd: "",
       users: {},
       rooms: null,
-      searchUser: ""
+      searchUser: "",
+      roomInfo: null
     };
   }
+
   reset() {
     this.setState(this.defaultState);
-  }	
+  }
 
   get dateStartValue() {
     if (this.state.dateStart) {
@@ -105,6 +107,14 @@ class Conversation extends Component {
     this.setState({ searchUser: e.target.value });
   }
 
+  onSelectRoom(room) {
+    this.setState({ roomInfo: room });
+  }
+
+  onDeleteRoom() {
+    this.setState({ roomInfo: null });
+  }
+
   /**
    * @return Array
    */
@@ -131,11 +141,13 @@ class Conversation extends Component {
     return (
       <div className="conversation">
         <header className="conversation__header">
-          <img
-            src={logo}
-            alt="Яндекс Переговорки"
-            style={{ height: 25, fontSize: "20px" }}
-          />
+          <div className="conversation__wrapper">
+            <img
+              src={logo}
+              alt="Яндекс Переговорки"
+              style={{ height: 25, fontSize: "20px" }}
+            />
+          </div>
         </header>
         <div className="conversation__content">
           <div className="conversation__wrapper">
@@ -154,21 +166,23 @@ class Conversation extends Component {
               onChange={this.onChangeDate.bind(this)}
               value={this.dateStartValue}
             />
-            <TimeInput
-              className="conversation__start"
-              label="Начало"
-              onChange={this.onChangeStartTime.bind(this)}
-              value={this.startTimeValue}
-            />
-            —
-            <TimeInput
-              className="conversation__end"
-              label="Конец"
-              onChange={this.onChangeEndTime.bind(this)}
-              value={this.endTimeValue}
-            />
+            <span className="conversation__interval conversation__section">
+              <TimeInput
+                className="conversation__start"
+                label="Начало"
+                onChange={this.onChangeStartTime.bind(this)}
+                value={this.startTimeValue}
+              />
+              —
+              <TimeInput
+                className="conversation__end"
+                label="Конец"
+                onChange={this.onChangeEndTime.bind(this)}
+                value={this.endTimeValue}
+              />
+            </span>
             <ArrInput
-              className="conversation__participants"
+              className="conversation__participants conversation__section"
               label="Участники"
               items={[
                 {
@@ -202,7 +216,7 @@ class Conversation extends Component {
               search={this.state.searchUser}
             />
             <ListInput
-              className="conversation__room"
+              className="conversation__room conversation__section"
               label="Ваша переговорка"
               items={[
                 {
@@ -221,15 +235,28 @@ class Conversation extends Component {
                   text: `Тёмная башня ${String.fromCharCode(183)} 4 этаж`
                 }
               ]}
+              value={this.state.roomInfo}
+              onClick={this.onSelectRoom.bind(this)}
+              onDelete={this.onDeleteRoom.bind(this)}
             />
+            <a href="#" className="conversation__section conversation__remove">
+              Удалить встречу
+            </a>
           </div>
         </div>
         <footer className="conversation__footer">
-          <Button className="conversation__footer-item" value="Отмена" onClick={this.reset.bind(this)}/>
-          <Submit
-            className="conversation__footer-item"
-            value="Создать встречу"
-          />
+          <div className="conversation__wrapper">
+            <div className="conversation__error">Выберите переговорку</div>
+            <Button
+              className="conversation__footer-item"
+              value="Отмена"
+              onClick={this.reset.bind(this)}
+            />
+            <Submit
+              className="conversation__footer-item"
+              value="Создать встречу"
+            />
+          </div>
         </footer>
       </div>
     );

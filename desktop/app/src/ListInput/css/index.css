@@ -3,7 +3,6 @@
    box-sizing: border-box;
    border: none;
    vertical-align: top;
-   position:relative;
 }
 
 .list__list{
@@ -19,17 +18,19 @@
   height: 37px;
   line-height: 37px;
   margin-bottom: 8px;
-  padding-left: 12px;
+  padding-left: 9px;
   font-size: 13px;
   vertical-align: middle;
   box-sizing: border-box;
+  font-family: HelveticaNeue,sans-serif;
+  font-size: 13px;
  
 }
 
 .list__item b {
   font-family: HelveticaNeueBold;
   font-weight: normal;
-  padding-right: 18px;
+  padding-right: 6px;
 }
 
 .list__value {

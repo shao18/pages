@@ -14,7 +14,11 @@ class ListInput extends AbstractInput {
     let items;
     if (this.props.items.length > 0) {
       items = this.props.items.map((item, key) => (
-        <li key={key} className={`${this.blockName}__item`}>
+        <li
+          key={key}
+          className={`${this.blockName}__item`}
+          onClick={this.props.onClick.bind(null, item)}
+        >
           <b>
             {item.start} — {item.end}
           </b>{" "}
@@ -39,7 +43,12 @@ class ListInput extends AbstractInput {
           </b>{" "}
           {this.props.value.text}
         </span>{" "}
-        <a className={`${this.blockName}__value-remove`}>×</a>
+        <a
+          className={`${this.blockName}__value-remove`}
+          onClick={this.props.onDelete.bind(this)}
+        >
+          ×
+        </a>
       </div>
     );
   }
@@ -63,7 +72,7 @@ class ListInput extends AbstractInput {
             : "") +
           classList
         }
-        onClick={this.clickWrapper.bind(this)}
+        /*        OnClick={this.clickWrapper.bind(this)}*/
       >
         {this.label}
         {out}
@@ -73,7 +82,8 @@ class ListInput extends AbstractInput {
 }
 ListInput.propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func,
+  onSelect: PropTypes.func,
+  onDelete: PropTypes.func,
   value: PropTypes.array,
   state: PropTypes.oneOf(["normal", "focus", "error", "disabled"]),
   placeholder: PropTypes.string,
@@ -88,6 +98,8 @@ ListInput.defaultProps = {
   placeholder: "",
   id: null,
   label: "",
-  items: []
+  items: [],
+  onSelect: () => {},
+  onDelete: () => {}
 };
 export default ListInput;
