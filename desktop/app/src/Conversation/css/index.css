@@ -172,7 +172,7 @@
     margin-bottom: -12px;
   }
   .conversation__date .label:after{
-    content: " и время";
+    content: "\a0и время";
   }
   .conversation__interval{
     width: 420px;
@@ -199,12 +199,20 @@
   .date__input{
     height: 45px;
   }
+  .input__item-deletable-wrap{
+    flex: 1;
+  }
   .input__list-deletable{
    margin-top: 5px;
    margin-bottom: -5px; 
   }
-  .input__item-remove-deletable{
-    float: right;
+  .input__item-remove-deletable:after{
+    margin-right: 0;
+    line-height: 32px;
+  }
+  .input__item-img-deletable{
+    width: 32px;
+    height: 32px;
   }
   .list__item{
     height: 44px;
@@ -230,5 +238,65 @@
   .conversation__footer .submit{
     line-height: 18px;
     padding: 13px 16px;
+  }
+}
+
+
+@media screen and (max-width: 451px){
+  .conversation__content{
+  }
+  .conversation__wrapper{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap; 
+  } 
+  .label{
+    display: flex;
+    flex-grow: 2;
+    width: 100%;
+  }
+  .input{
+    width: 100%;
+  } 
+  .input__input{
+    width: 100%;
+  }
+  .conversation__date{
+    width: 100%;
+    margin-right: 16px;
+    margin-bottom: 6px;
+  }
+  .conversation__interval{
+    display: flex;
+    line-height: 45px;
+  }
+  .conversation__interval.conversation__section:after{
+    margin-top: 63px; 
+  }
+  .conversation__interval .label{
+    display: none;
+  }
+  .conversation__interval .time{
+    width: auto;
+    flex-grow: 1;
+  }
+  .input__list{
+    width: 90%;	  
+    width: calc(100% -  32px);
+  }
+  .input__list-deletable{
+    width: 100%;
+  }
+  .list{
+   width: 100%;
+  }
+  .list__value{
+   width: auto;
+  }
+  .list__item{
+    width: auto;
+  }
+  .conversation__remove{
+    width: 100%;
   }
 }
