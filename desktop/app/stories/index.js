@@ -21,7 +21,7 @@ import sinon from "sinon";
 function noMargin(getStory) {
   return (
     <div>
-      <link rel="stylesheet" href="stories.css" />
+      <link rel="stylesheet" href="/stories.css" />
       {getStory()}
     </div>
   );
