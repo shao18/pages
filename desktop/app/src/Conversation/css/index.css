@@ -14,7 +14,7 @@
 }
 .conversation{
   font-family: "HelveticaNeue", sans-serif;
-  font-size: 13px;
+  /*font-size: 13px;*/
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
@@ -26,16 +26,18 @@
 
 .conversation__header{
   border-bottom: 1px solid #E9ECEF;
-  min-height: 45px;
-  padding-top: 25px;
+  /*min-height: 45px;*/
+  /*padding-top: 25px;*/
   padding-left: 25px;
   padding-right: 25px;
   display: flex;
   justify-content: space-between;
 /*  mix-blend-mode: difference;*/
 }
-
-
+.conversation__create-new{
+  float: right;
+  margin-top: 18px;
+}
 .conversation__close:after{
 	
   content: "×";
@@ -61,7 +63,6 @@
 }
 .conversation__wrapper{
   /*outline: 1px solid red;*/
-  /*max-width: 872px;*/
   max-width: 904px;	
   margin: 0 auto 0 auto;
   /*mix-blend-mode: difference;*/
@@ -69,7 +70,9 @@
 }
 .conversation__header .conversation__wrapper{
  width: 100%;
+ line-height: 70px;
 }
+
 .conversation__footer{
   box-shadow: 1px 0 0 0 #E9ECEF;
   border-top: 1px solid #E9ECEF;

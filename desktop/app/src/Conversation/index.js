@@ -145,7 +145,7 @@ class Conversation extends Component {
             <img
               src={logo}
               alt="Яндекс Переговорки"
-              style={{ height: 25, fontSize: "20px" }}
+              style={{ height: 25, fontSize: "20px", verticalAlign: "middle" }}
             />
           </div>
         </header>
