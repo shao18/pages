@@ -1,0 +1,36 @@
+.timeline{
+  margin:0;
+  background: white;
+ 
+}
+
+.timeline__moments{
+  margin: 0;	
+  padding-left:0;
+  list-style-type: none;	
+  white-space: nowrap;
+  position: relative;
+  left: -80px;
+}
+
+.timeline__moment{
+  display: inline-block;
+}
+.timeline__moment-wrapper{
+  position: relative;
+  left: -50%;
+  z-index: 10;
+  background: white;
+  width: 65px;
+  text-align: center;
+  display: block;
+  line-height: 44px;
+}
+.timeline__moment:after{
+  content: "";	
+  border-right: 1px solid rgba(19,100,205,0.10);;
+  height: 100vh;
+  position: absolute;
+
+}
+

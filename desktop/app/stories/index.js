@@ -1,4 +1,3 @@
-import { ContainerQuery } from "react-container-query";
 import { action } from "@storybook/addon-actions";
 import { before, describe, it, specs } from "storybook-addon-specifications";
 import { configure } from "enzyme";
@@ -9,6 +8,7 @@ import { storiesOf } from "@storybook/react";
 import Adapter from "enzyme-adapter-react-16";
 import ArrInput from "ArrInput";
 import Button from "Button";
+import ConversationList from "ConversationList";
 import Conversation from "Conversation";
 import DateInput from "DateInput";
 import Input from "VInput";
@@ -146,6 +146,9 @@ storiesOf("Time", module)
 storiesOf("Conversation", module)
   .addDecorator(noMargin)
   .add("Новая встреча", () => <Conversation />);
+storiesOf("ConversationList", module)
+  .addDecorator(noMargin)
+  .add("Список встреч", () => <ConversationList />);
 
 /*
  *StoriesOf("City", module).add("weather", () => {
