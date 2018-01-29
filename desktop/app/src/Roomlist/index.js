@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import "Roomlist/css/index.css";
 import _ from "lodash";
 import PropTypes from "prop-types";
+import Swipeable from 'react-swipeable';
+
 class Roomlist extends Component {
   render(){
     let res = [];
@@ -13,8 +15,26 @@ class Roomlist extends Component {
          });
        }
     }	
-    return (<div className="roomlist"> <ul className=" roomlist__rooms">{res}</ul> </div>); 
+    return (<div className="roomlist"> <Swipeable 
+	    nodeName="ul" 
+	    className="roomlist__rooms"
+	    trackMouse={true}
+            style={{top:this.props.topShift}}
+            onSwipedUp={this.props.onSwipeUp}
+	    onSwipedDown={this.props.onSwipeDown}
+	    >{res}</Swipeable> </div>); 
   }
+}
+Roomlist.propTypes = {
+   onSwipeUp:PropTypes.func,
+   onSwipeDown:PropTypes.func,
+   topShift: PropTypes.number,
+}
+Roomlist.defaultProps = {
+  onSwipeUp: (e,x) => {},
+  onSwipeDown: (e,x) => { },
+  topShift: 0,
+
 }
 
 export default  Roomlist;
