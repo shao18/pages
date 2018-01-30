@@ -93,6 +93,9 @@
     margin-top: 45px;
     border-bottom: 1px solid #E9ECEF;
   }
+  .conversation-list__content .timeline__cursor{
+    z-index: 20;
+  }
   .conversation-list__content .timeline__moment-wrapper{
     z-index: 20;
   }	  

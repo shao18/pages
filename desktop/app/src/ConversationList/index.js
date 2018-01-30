@@ -34,6 +34,22 @@ class ConversationList extends Component {
     if (shift > 0) shift = 0;
     this.setState({roomlistTopShift: shift});
   }
+  onRoomTimeClick(e){
+    const time = this.xToTime(e.clientX).map( n => ((n<10)?"0":"") + n);
+    this.setState({cursor:time[0]+":"+time[1],cursorX: e.clientX - this.state.timelineLeftShift});	  
+    	  
+  }
+  timeToX(h,m){
+    return Math.floor((h*60+m)/(this.state.width*60) + this.state.timelineLeftShift);
+  }	
+  xToTime(x)	
+  {  const inMinutes = (x - this.state.timelineLeftShift)*60/this.state.width; 
+     let hours = Math.floor(inMinutes / 60);
+     const minutes = Math.floor(inMinutes - hours * 60 );
+     hours += this.state.start;	  
+     return [hours,minutes];	  
+  }
+  	
   	
   headerCreateEvent(){
     
@@ -41,7 +57,13 @@ class ConversationList extends Component {
   get defaultState() {
     return {
       timelineLeftShift:  -100,
-      roomlistTopShift: 0,	    
+      roomlistTopShift: 0,
+      start: 0,
+      stop: 24,
+      width: 65,
+      cursor: "",
+      cursorX: 0,	    
+
     };
   }
   get rooms(){
@@ -104,17 +126,21 @@ class ConversationList extends Component {
         </header>
         <div className="conversation-list__content">
              <Calendar/><Timeline 
-	    start="0" 
-	    end="24"
+	    start={this.state.start} 
+	    end={this.state.end}
+	    hourWidth={this.state.width}
 	    onSwipeLeft={this.onTimelineLeft.bind(this)}
 	    onSwipeRight={this.onTimelineRight.bind(this)}
 	    leftShift={this.state.timelineLeftShift}
+            cursor={this.state.cursor}
+            cursorX={this.state.cursorX}
 	    />
 	    <Roomlist 
 	    rooms={this.roomsByFloor}
 	    topShift={this.state.roomlistTopShift}
 	    onSwipeUp={this.onRoomlistUp.bind(this)}
 	    onSwipeDown={this.onRoomlistDown.bind(this)}
+	    onClick={this.onRoomTimeClick.bind(this)}
 	    />
         </div>
       </div>

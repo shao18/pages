@@ -11,7 +11,7 @@ class Roomlist extends Component {
        if(this.props.rooms.hasOwnProperty(floor)){
          res.push( <li className="roomlist__floor" key={"f"+floor}>{floor}</li>);
          this.props.rooms[floor].forEach((room,id)=>{
-           res.push( <li className="roomlist__room" key={"f"+floor+"_"+id}><div className="room__info"><span className="room__title">{room.title}</span><span className="room__capacity">{room.capacity}</span></div><div className="roomlist__room-time"></div></li>);
+           res.push( <li className="roomlist__room" key={"f"+floor+"_"+id}><div className="room__info"><span className="room__title">{room.title}</span><span className="room__capacity">{room.capacity}</span></div><div className="roomlist__room-time" onClick={this.props.onClick}></div></li>);
          });
        }
     }	
@@ -33,6 +33,7 @@ Roomlist.propTypes = {
 Roomlist.defaultProps = {
   onSwipeUp: (e,x) => {},
   onSwipeDown: (e,x) => { },
+  onClick: (e) => {console.log(e.clientX); },	
   topShift: 0,
 
 }
