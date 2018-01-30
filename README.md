@@ -13,4 +13,4 @@
 **Создать Новое Событие**
 
 [storybook](desktop/app/buildedNewConversation/index.html)
-[Создать событие] (https://shao18.github.io/pages/?selectedKind=Conversation&selectedStory=Новая%20встреча&full=1&down=1&left=1&panelRight=0&downPanel=storybook-addon-specifications%2Fspecifications-panel)
+[Создать событие](https://shao18.github.io/pages/?selectedKind=Conversation&selectedStory=Новая%20встреча&full=1&down=1&left=1&panelRight=0&downPanel=storybook-addon-specifications%2Fspecifications-panel)
