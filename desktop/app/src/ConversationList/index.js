@@ -103,13 +103,76 @@ class ConversationList extends Component {
   get roomsByFloor(){
      return _.groupBy(this.rooms, room => room.floor ); 
   }	
-	
+  get events(){
+   return [
+      {
+        "id": "1",
+        "dateStart": "2017-12-13T19:12:36.981Z",
+        "dateEnd": "2017-12-13T20:12:36.981Z",
+        "title": "ШРИ 2018 - начало",
+        "room": {
+          "id": "1"
+        },
+        "users": [
+          {
+            "id": "1",
+            "login": "veged"
+          },
+          {
+            "id": "2",
+            "login": "alt-j"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "dateStart": "2017-12-13T20:12:36.981Z",
+        "dateEnd": "2017-12-13T21:12:36.981Z",
+        "title": "👾 Хакатон 👾",
+        "room": {
+          "id": "2"
+        },
+        "users": [
+          {
+            "id": "2",
+            "login": "alt-j"
+          },
+          {
+            "id": "3",
+            "login": "yeti-or"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "dateStart": "2017-12-13T22:12:36.981Z",
+        "dateEnd": "2017-12-13T21:12:36.981Z",
+        "title": "🍨 Пробуем kefir.js",
+        "room": {
+          "id": "3"
+        },
+        "users": [
+          {
+            "id": "1",
+            "login": "veged"
+          },
+          {
+            "id": "3",
+            "login": "yeti-or"
+          }
+        ]
+      }
+    ]
+  }
+  get eventsByRoom(){
+    return _.groupBy(this.events, room => room.id ); 
+  }	
 
   /**
    * @ignore
    */
   render() {
-    	  console.log(this.roomsByFloor);
+    	  console.log("byRoom", this.eventsByRoom);
     return (
       <div className="conversation-list">
         <header className="conversation-list__header">
@@ -141,6 +204,7 @@ class ConversationList extends Component {
 	    onSwipeUp={this.onRoomlistUp.bind(this)}
 	    onSwipeDown={this.onRoomlistDown.bind(this)}
 	    onClick={this.onRoomTimeClick.bind(this)}
+	    events={this.eventsByRoom}
 	    />
         </div>
       </div>

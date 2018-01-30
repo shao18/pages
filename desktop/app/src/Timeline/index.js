@@ -25,9 +25,9 @@ class Timeline extends Component {
 Timeline.propTypes = {
    onSwipeLeft:PropTypes.func,
    onSwipeRight:PropTypes.func,
-   leftShift: PropTypes.string,	
    cursor: PropTypes.string,
    cursorX: PropTypes.number,	
+   leftShift: PropTypes.number,	
 }
 Timeline.defaultProps = {
   onSwipeLeft: (e,x) => {
