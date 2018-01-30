@@ -5,10 +5,11 @@ import PropTypes from "prop-types";
 import Swipeable from 'react-swipeable';
 class Timeline extends Component {
   render(){
-    const times = _.range(this.props.start,this.props.end).map((hour,id)=>{
-      	    
-      return <li className="timeline__moment" key={id}><span className="timeline__moment-wrapper">{(hour<10)?"0":""}{hour}:00</span></li>
+    const r = _.range(this.props.start,this.props.end);	  
+    const times = r.map((hour,id)=>{
+      return <li className="timeline__moment" key={id}><span className="timeline__moment-wrapper" style={{width:this.props.hourWidth}}>{(hour<10)?"0":""}{hour}:00</span></li>
     });
+    const cursor = <li className="timeline__cursor" key={r.length} style={{left: this.props.cursorX}}><span className="timeline__cursor-wrapper">{this.props.cursor}</span></li>	  
     let style = {left:this.props.leftShift};  
     return (<div className="timeline" ><Swipeable 
 	    nodeName="ul"
@@ -17,7 +18,7 @@ class Timeline extends Component {
 	    onSwipedLeft={this.props.onSwipeLeft.bind(this)}
 	    onSwipedRight={this.props.onSwipeRight.bind(this)}
 	    style={style}
-	    >{times} </Swipeable></div>); 
+	    >{times}{cursor}</Swipeable></div>); 
   }
 }
 
@@ -25,6 +26,8 @@ Timeline.propTypes = {
    onSwipeLeft:PropTypes.func,
    onSwipeRight:PropTypes.func,
    leftShift: PropTypes.string,	
+   cursor: PropTypes.string,
+   cursorX: PropTypes.number,	
 }
 Timeline.defaultProps = {
   onSwipeLeft: (e,x) => {
@@ -37,6 +40,11 @@ Timeline.defaultProps = {
     console.log(["swipe",e]);
   },
   leftShift: -300,
+  start: 0,
+  end: 23,
+  hourWidth: 65,
+  cursor: "",
+  cursorX: 0,	
 	
 }
 
