@@ -33,9 +33,14 @@
  line-height: 28px;
  height: 28px;
  background: #D5DFE9;
+ background: #D5DFE980;
  position: relative;
- mix-blend-mode: multiply;
  top: -36px;
+}
+.roomlist__room-time-item{
+ background: white;
+ position: absolute;
+
 }
 .room__info{
  width: 220px;

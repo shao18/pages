@@ -8,9 +8,18 @@ class Roomlist extends Component {
   roomTime(room){
      let events;		 
      if(this.props.events.hasOwnProperty(room)){
-       console.log("ROOM",room, this.props.events[room]);
-	     
-       events=this.props.events[room].map((eventItem,id) => <div className="roomlist__room-time-item" key={id}>{eventItem.title}</div>)
+       events=this.props.events[room].map((eventItem,id) => {
+	       const startX = this.props.timeToX(eventItem.startTime[0], eventItem.startTime[1]);
+	       const width = this.props.timeToX(eventItem.endTime[0], eventItem.endTime[1]) - startX;
+	       return <div 
+	       className="roomlist__room-time-item" 
+	       key={id}
+	       style={{
+		 left: startX,
+                 width ,
+	       }}
+	       title={eventItem.title}
+	       >{eventItem.startTime.join(":")}</div>})
      }		 
      return <div className="roomlist__room-time" onClick={this.props.onClick}>{events}</div>;
   }

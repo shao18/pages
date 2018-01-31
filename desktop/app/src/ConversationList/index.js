@@ -40,7 +40,7 @@ class ConversationList extends Component {
     	  
   }
   timeToX(h,m){
-    return Math.floor((h*60+m)/(this.state.width*60) + this.state.timelineLeftShift);
+    return Math.floor((h*60+m-this.state.start*60)*this.state.width/60 + this.state.timelineLeftShift);
   }	
   xToTime(x)	
   {  const inMinutes = (x - this.state.timelineLeftShift)*60/this.state.width; 
@@ -107,11 +107,11 @@ class ConversationList extends Component {
    return [
       {
         "id": "1",
-        "dateStart": "2017-12-13T19:12:36.981Z",
-        "dateEnd": "2017-12-13T20:12:36.981Z",
+        "dateStart": "2017-12-13T10:12:36.981Z",
+        "dateEnd": "2017-12-13T15:12:36.981Z",
         "title": "ШРИ 2018 - начало",
         "room": {
-          "id": "1"
+          "id": "2"
         },
         "users": [
           {
@@ -126,8 +126,8 @@ class ConversationList extends Component {
       },
       {
         "id": "2",
-        "dateStart": "2017-12-13T20:12:36.981Z",
-        "dateEnd": "2017-12-13T21:12:36.981Z",
+        "dateStart": "2017-12-13T08:12:36.981Z",
+        "dateEnd": "2017-12-13T09:12:36.981Z",
         "title": "👾 Хакатон 👾",
         "room": {
           "id": "2"
@@ -145,8 +145,8 @@ class ConversationList extends Component {
       },
       {
         "id": "3",
-        "dateStart": "2017-12-13T22:12:36.981Z",
-        "dateEnd": "2017-12-13T21:12:36.981Z",
+        "dateStart": "2017-12-13T15:12:36.981Z",
+        "dateEnd": "2017-12-13T16:34:36.981Z",
         "title": "🍨 Пробуем kefir.js",
         "room": {
           "id": "3"
@@ -162,10 +162,18 @@ class ConversationList extends Component {
           }
         ]
       }
-    ]
+    ].map(item => {
+      let copy = _.cloneDeep(item);
+      const start = new Date(copy.dateStart);
+      const end = new Date(copy.dateEnd);	   
+      let [startTime,endTime] = [start,end].map(d=>[d.getHours(),d.getMinutes()]);
+     copy.startTime = startTime;
+     copy.endTime = endTime;
+     return copy;	    
+    })
   }
   get eventsByRoom(){
-    return _.groupBy(this.events, room => room.id ); 
+    return _.groupBy(this.events, eventItem => eventItem.room.id ); 
   }	
 
   /**
@@ -205,6 +213,7 @@ class ConversationList extends Component {
 	    onSwipeDown={this.onRoomlistDown.bind(this)}
 	    onClick={this.onRoomTimeClick.bind(this)}
 	    events={this.eventsByRoom}
+	    timeToX={this.timeToX.bind(this)}
 	    />
         </div>
       </div>
