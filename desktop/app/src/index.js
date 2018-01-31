@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import UniversalRouter from "universal-router";
 import registerServiceWorker from "./registerServiceWorker";
-
+import "index.css";
 /**
  * Routes
  */
