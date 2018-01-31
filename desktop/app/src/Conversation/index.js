@@ -151,8 +151,10 @@ class Conversation extends Component {
         </header>
         <div className="conversation__content">
           <div className="conversation__wrapper">
-           <h1 className="h1">Новая встреча<a className="conversation__close"></a></h1>
-	    <VInput
+            <h1 className="h1">
+              Новая встреча<a className="conversation__close" />
+            </h1>
+            <VInput
               placeholder="О чём будете говорить?"
               className="conversation__title"
               label="Тема"

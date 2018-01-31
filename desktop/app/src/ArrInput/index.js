@@ -100,11 +100,14 @@ class ArrInput extends AbstractInput {
 
         return (
           <li key={key} className={`${this.blockName}__item${mod}`}>
-		{img}{" "}<span className={`${this.blockName}__item${mod}-wrap`}>{item.login}</span>{" "}
+            {img}{" "}
+            <span className={`${this.blockName}__item${mod}-wrap`}>
+              {item.login}
+            </span>{" "}
             <a
               className={`${this.blockName}__item-remove${mod}`}
               onClick={this.props.onDelete.bind(null, item.id)}
-            ></a>
+            />
           </li>
         );
       });
