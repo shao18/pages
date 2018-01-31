@@ -16,7 +16,9 @@ import ListInput from "ListInput";
 import React from "react";
 import Submit from "Submit";
 import TimeInput from "TimeInput";
+import Title from "Title";
 import sinon from "sinon";
+import "../orig/stories.css";
 
 function noMargin(getStory) {
   return (
@@ -143,6 +145,15 @@ storiesOf("Date", module)
 storiesOf("Time", module)
   .add("Deafult", () => <TimeInput />)
   .add("Value", () => <TimeInput value="18:20" />);
+storiesOf("Title", module )
+  .add("Value", ()=> <div style={{background: "yellow", padding: 20}}><Title 
+	  title="Рассуждения о высоком" 
+	  date="14 декабря"
+          start={[15,0]}
+	  end={[17,0]}
+	  roomName="Желтый дом"
+
+	  /></div>)	
 storiesOf("Conversation", module)
   .addDecorator(noMargin)
   .add("Новая встреча", () => <Conversation />);

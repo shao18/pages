@@ -25,9 +25,8 @@ class Roomlist extends Component {
             width ,
 	       }}
             title={eventItem.title}
-          >
-            {eventItem.startTime.join(":")}
-          </div>
+          >&nbsp;</div>
+           
         );
       });
     }		 

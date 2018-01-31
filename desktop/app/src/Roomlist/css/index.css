@@ -40,9 +40,10 @@
 .roomlist__room-time-item{
  background: white;
  position: absolute;
-
 }
-.room__info{
+.roomlist__room-time-item:hover{
+   background: #99A9B9 
+}.room__info{
  width: 220px;
  padding-top: 3px;
  padding-bottom: 4px;

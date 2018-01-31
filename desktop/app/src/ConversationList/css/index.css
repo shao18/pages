@@ -110,7 +110,10 @@
   .conversation-list__content .roomlist__room-time{
     height: 58px;
     top: -24px;    
-  }	  
+  }
+  .conversation-list__content .roomlist__room-time-item{
+    height: 58px;
+  }
   .conversation-list__content .room__info{
     background: transparent;
     padding-top: 0;
