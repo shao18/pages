@@ -104,6 +104,7 @@ class ArrInput extends AbstractInput {
             <span className={`${this.blockName}__item${mod}-wrap`}>
               {item.login}
             </span>{" "}
+            // eslint-disable-next-line
             <a
               className={`${this.blockName}__item-remove${mod}`}
               onClick={this.props.onDelete.bind(null, item.id)}

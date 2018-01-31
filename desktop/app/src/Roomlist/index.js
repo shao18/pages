@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import "Roomlist/css/index.css";
 import PropTypes from "prop-types";
-import Swipeable from 'react-swipeable';
-import _ from "lodash";
-
+import Swipeable from "react-swipeable";
+/**
+ * List of rooms and place for events
+ */
 class Roomlist extends Component {
   roomTime(room) {
-    let events;		 
-    if(this.props.events.hasOwnProperty(room)){
-      events=this.props.events[room].map((eventItem,id) => {
+    let events;
+    if (this.props.events.hasOwnProperty(room)) {
+      events = this.props.events[room].map((eventItem, id) => {
         const startX = this.props.timeToX(
           eventItem.startTime[0],
           eventItem.startTime[1]
@@ -22,24 +23,41 @@ class Roomlist extends Component {
             key={id}
             style={{
               left: startX,
-            width ,
-	       }}
+              width
+            }}
             title={eventItem.title}
-          >&nbsp;</div>
-           
+          >
+            &nbsp;
+          </div>
         );
       });
-    }		 
-    return <div className="roomlist__room-time" onClick={this.props.onClick}>{events}</div>;
+    }
+    return (
+      <div className="roomlist__room-time" onClick={this.props.onClick}>
+        {events}
+      </div>
+    );
   }
 
   render() {
     const res = [];
-    for (let floor in this.props.rooms) {
-      if(this.props.rooms.hasOwnProperty(floor)){
-        res.push( <li className="roomlist__floor" key={`f${floor}`}>{floor}</li>);
-        this.props.rooms[floor].forEach((room,id)=>{
-          res.push( <li className="roomlist__room" key={`f${floor}_${id}`}><div className="room__info"><span className="room__title">{room.title}</span><span className="room__capacity">{room.capacity}</span></div>{this.roomTime(room.id)}</li>);
+    for (const floor in this.props.rooms) {
+      if (this.props.rooms.hasOwnProperty(floor)) {
+        res.push(
+          <li className="roomlist__floor" key={`f${floor}`}>
+            {floor}
+          </li>
+        );
+        this.props.rooms[floor].forEach((room, id) => {
+          res.push(
+            <li className="roomlist__room" key={`f${floor}_${id}`}>
+              <div className="room__info">
+                <span className="room__title">{room.title}</span>
+                <span className="room__capacity">{room.capacity}</span>
+              </div>
+              {this.roomTime(room.id)}
+            </li>
+          );
         });
       }
     }
@@ -50,8 +68,8 @@ class Roomlist extends Component {
           nodeName="ul"
           className="roomlist__rooms"
           trackMouse={true}
-      style={{top:this.props.topShift}}
-      onSwipedUp={this.props.onSwipeUp}
+          style={{ top: this.props.topShift }}
+          onSwipedUp={this.props.onSwipeUp}
           onSwipedDown={this.props.onSwipeDown}
         >
           {res}
@@ -61,16 +79,14 @@ class Roomlist extends Component {
   }
 }
 Roomlist.propTypes = {
-  onSwipeUp:PropTypes.func,
-  onSwipeDown:PropTypes.func,
-  topShift: PropTypes.number,
+  onSwipeUp: PropTypes.func,
+  onSwipeDown: PropTypes.func,
+  topShift: PropTypes.number
 };
 Roomlist.defaultProps = {
   onSwipeUp: (e, x) => {},
   onSwipeDown: (e, x) => {},
-  onClick: e => {
-    console.log(e.clientX);
-  },
+  onClick: e => {},
   topShift: 0
 };
 

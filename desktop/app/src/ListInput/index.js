@@ -101,6 +101,6 @@ ListInput.defaultProps = {
   items: [],
   onSelect: () => {},
   onDelete: () => {},
-  onClick: () => {}	
+  onClick: () => {}
 };
 export default ListInput;

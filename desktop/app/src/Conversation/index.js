@@ -2,7 +2,6 @@ import ArrInput from "ArrInput";
 import Button from "Button";
 import DateInput from "DateInput";
 import ListInput from "ListInput";
-import PropTypes from "prop-types";
 import "Conversation/css/index.css";
 import React, { Component } from "react";
 import Submit from "Submit";

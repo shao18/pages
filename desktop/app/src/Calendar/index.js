@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "Calendar/css/index.css";
 
+/**
+ * Calendar component
+ */
 class Calendar extends Component {
   render() {
     return (

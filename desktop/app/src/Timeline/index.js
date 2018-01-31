@@ -3,6 +3,9 @@ import "Timeline/css/index.css";
 import PropTypes from "prop-types";
 import Swipeable from "react-swipeable";
 import _ from "lodash";
+/**
+ * List of hours and vertical rulers
+ */
 class Timeline extends Component {
   render() {
     const r = _.range(this.props.start, this.props.end);
@@ -53,15 +56,9 @@ Timeline.propTypes = {
   leftShift: PropTypes.number
 };
 Timeline.defaultProps = {
-  onSwipeLeft: (e, x) => {
-    console.log("left", e, x);
-  },
-  onSwipeRight: (e, x) => {
-    console.log("right", e, x);
-  },
-  onSwipe: e => {
-    console.log(["swipe", e]);
-  },
+  onSwipeLeft: (e, x) => {},
+  onSwipeRight: (e, x) => {},
+  onSwipe: e => {},
   leftShift: -300,
   start: 0,
   end: 23,

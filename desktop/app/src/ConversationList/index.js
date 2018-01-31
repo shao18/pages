@@ -1,7 +1,5 @@
-import ArrInput from "ArrInput";
-import PropTypes from "prop-types";
+/* Import PropTypes from "prop-types";*/
 import "ConversationList/css/index.css";
-import Button from "Button";
 import Calendar from "Calendar";
 import React, { Component } from "react";
 import Roomlist from "Roomlist";
@@ -195,7 +193,6 @@ class ConversationList extends Component {
    * @ignore
    */
   render() {
-    console.log("byRoom", this.eventsByRoom);
     return (
       <div className="conversation-list">
         <header className="conversation-list__header">
